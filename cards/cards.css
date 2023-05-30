@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+
+body{
+    background-color: #111;
+    font-family: "Press Start 2P",cursive;
+}
+
+.title{
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 2em 0;
+}
+
+.wrapper {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 640px;
+    height: 100vh;
+}
+
+.cards {
+    position: absolute;
+    bottom: 4em;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    user-select: none;
+    counter-reset: cardNumber;
+}
+
+.card {
+    display: block;
+    width: 75px;
+    height: 100px;
+    border: 4px solid #333;
+    cursor: pointer;
+    transition: all o.25s ease-in;
+    background-color: #0093e9;
+    background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+    border-radius: 8px;
+    color: #fff;
+}
+
+
+.card::before{
+    content: counter(cardNumber);
+    counter-increment: cardNumber;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.cards .card:hover {
+    transform: translateY(-8px);
+}
+
+.cards:has(.card:hover).card:not(:hover) {
+    filter: grayscale(70%) blur(3px);
+    opacity: 0.4;
+    
+}
+
+.cards label:has(input:checked + .card){
+    animation-name: displayCard;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+
+/* hide default radio button  */
+.cards input {
+    position: absolute;
+    opacity: 0;
+}
+
+@keyframes displayCard {
+    50% {
+        transform: translateY(-20vh) scale(1.5) rotate(0);
+    }
+    100% {
+        transform: translate(-50%, calc(-50vh)) scale(2) rotate(-360deg);
+    }
+}
+

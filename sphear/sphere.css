@@ -1,0 +1,93 @@
+:root {
+	--blade-count: 5;
+	--sphere-diameter: 30rem;
+	--sphere-radius: calc(var(--sphere-diameter) / 2);
+	--blade-gap: calc(var(--sphere-radius) / var(--blade-count));
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background-color: hwb(0 10% 80%);
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+}
+
+html {
+	overflow: hidden;
+}
+
+body {
+	perspective: 100em;
+	perspective-origin: center;
+	transition: perspective 3s linear;
+}
+
+.sphere {
+	height: var(--sphere-diameter);
+	aspect-ratio: 1;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: rotate 3s linear;
+	animation: spin 50s linear infinite;
+}
+
+@keyframes spin {
+	100% {
+		rotate: 1 1 0 6000deg;
+	}
+}
+
+.plane-x,
+.plane-y,
+.plane-z,
+.blade {
+	position: absolute;
+	transform-style: preserve-3d;
+	aspect-ratio: 1;
+	height: 100%;
+}
+
+.plane-x {
+	rotate: x 90deg;
+}
+
+.plane-y {
+	rotate: y 90deg;
+}
+
+.plane-z {
+	rotate: z 90deg;
+}
+
+.blade {
+	height: calc(100% - (var(--blade-gap) * 2));
+	translate: var(--blade-gap) var(--blade-gap) var(--blade-gap);
+	border-radius: 50%;
+}
+
+.plane-x .blade {
+	background-color: rgba(200, 100, 100, 0.5);
+}
+
+.plane-y .blade {
+	background-color: rgba(100, 200, 100, 0.5);
+}
+
+.plane-z .blade {
+	background-color: rgba(100, 100, 200, 0.5);
+}
+
+.blade.inverse {
+	translate: var(--blade-gap) var(--blade-gap) calc(-1 * var(--blade-gap));
+}

@@ -1,0 +1,94 @@
+
+/* *{
+    background:#a2a2a2;
+} */
+
+body {
+    background: #dac2c2;
+}
+
+.stage {
+    width: 100%;
+    max-width: auto;
+    height: 500px;
+    position: relative;
+    /* background-color: #dac2c2; */
+}
+.cube {
+    position: relative;
+    margin: 0 auto;
+    top: 30%;
+}
+.cube .cube__outter {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+    margin: 100px auto 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.cube .cube__outter--core {
+    transform: scale(0.65);
+    position: absolute;
+    z-index: -1;
+}
+.cube .cube__outter--core .cube__inner .side {
+    background: #000;
+}
+.cube .cube__outter .cube__inner {
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: spin 5s infinite linear;
+}
+.cube .cube__outter .side {
+    opacity: 0.4;
+    transform-style: preserve-3d;
+    box-shadow: inset 0px 0px 15px 5px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #a2a2a2;
+    background-repeat: no-repeat;
+    background-size: 400% auto;
+    background-position: 0 0;
+}
+.cube .cube__outter .side--1 {
+    background-position: 100% 50%;
+    transform: rotateX(-180deg) translateZ(100px);
+}
+.cube .cube__outter .side--2 {
+    background-position: 0 50%;
+    transform: rotateY(-90deg) translateZ(100px);
+}
+.cube .cube__outter .side--3 {
+    background-position: 32.5% 0;
+    transform: rotateX(90deg) translateZ(100px);
+}
+.cube .cube__outter .side--4 {
+    background-position: 32.5% 100%;
+    transform: rotateX(-90deg) translateZ(100px);
+}
+.cube .cube__outter .side--5 {
+    background-position: 66% 50%;
+    transform: rotateY(90deg) translateZ(100px);
+}
+.cube .cube__outter .side--6 {
+    background-position: 33.5% 50%;
+    transform: rotateX(0deg) translateZ(100px);
+}
+
+@keyframes spin {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+   }
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+   }
+}
+
